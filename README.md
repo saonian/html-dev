@@ -4,6 +4,8 @@
 
 前后端分离的使用对应框架的cli来生成开发环境
 
+基于Gulp4，不兼容之前版本
+
 ### 主要功能：
 
 1. 支持SASS/LESS
@@ -12,6 +14,18 @@
 4. 支持静态文件布局器
 5. 支持js合并（需手动配置具体合并文件）
 6. 开发环境热加载
+
+### Gulp安装
+
+1. 如果之前有全局安装Gulp的，先卸载
+
+   `npm rm --global gulp`
+
+2. 确保已经安装了node
+
+3. 安装gulp-cli
+
+   `npm install --global gulp-cli`
 
 ### Usage
 
