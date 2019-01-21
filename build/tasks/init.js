@@ -4,7 +4,7 @@ module.exports = function (gulp, plugins, options) {
     var emptyDir = function (fileUrl) {
         var files = fs.readdirSync(fileUrl);
 
-        if (files.length === 0) {
+        if (files.length === 0 && fileUrl !== 'dist') {
             fs.rmdirSync(fileUrl);
         }
 
