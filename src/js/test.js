@@ -1,3 +1,4 @@
 let test = (a) => {
-    return a;
+  return a
 }
+test('aaa')

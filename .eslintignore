@@ -1,0 +1,5 @@
+build/
+node_modules/
+dist/
+gulpfile.js
+src/js/lib/
