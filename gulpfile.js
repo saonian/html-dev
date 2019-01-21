@@ -9,6 +9,7 @@ gulp.task('sass', getTask('sass'));
 gulp.task('html', getTask('html'));
 gulp.task('image', getTask('image'));
 gulp.task('concatjs', getTask('concatjs'));
+gulp.task('empty', getTask('init'));
 
 gulp.task('default', gulp.series(getTask('init'), gulp.parallel('script', 'sass', 'less', 'html', 'image')));
 

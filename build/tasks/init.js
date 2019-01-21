@@ -12,11 +12,15 @@ module.exports = function (gulp, plugins, options) {
             var stats = fs.statSync(fileUrl + '/' + file);
 
             if (stats.isDirectory()) {
-                emptyDir(fileUrl+'/'+file);
-            } else {
+                emptyDir(fileUrl + '/' + file);
+            } else if (file !== '.gitkeep') {
                 fs.unlinkSync(fileUrl + '/' + file);
             }
         });
+
+        if (fileUrl !== 'dist') {
+            fs.rmdirSync(fileUrl);
+        }
      }
 
     return function (done) {
