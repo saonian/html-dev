@@ -1,0 +1,109 @@
+<!-- @@master layout/default.html-->
+
+<!-- @@block content -->
+<main>
+    闭包
+</main>
+
+<script type="text/javascript">
+// 有权访问另一个函数作用域的函数就是闭包
+// 作用：读取函数内的变量(模拟私有方法)、让变量的值始终保持在内存中
+
+// 全局变量
+var name = 'aaa';
+
+function a () {
+    // 私有属性
+    var n = 0;
+    // 全局变量
+    b = 5;
+
+    add = function () {
+        n++;
+        console.log(n);
+    }
+    // 私有方法
+    function inc() {
+        n++;
+        console.log(n);
+    }
+
+    return inc;
+}
+
+function z(argument) {
+    // 公有属性
+    this.name = 'bbb'
+    // 公有方法
+    this.printName = function () {
+        console.log(this.name)
+    }
+    // 静态属性
+    z.age = 25;
+    // 静态方法
+    z.hello = function () {
+        console.log('hello from z');
+    };
+}
+
+// 公有属性
+z.prototype.name = 'ccc';
+
+// console.log(b)
+
+var c = a();
+c();
+c();
+add();
+// 释放内存
+c = null
+
+console.log(b)
+
+var d = new a();
+console.log(d)
+
+var x = new z();
+console.log(x)
+console.log(x.name)
+console.log(z.age)
+z.hello()
+
+console.log('--------------------------------------------------')
+
+function a1 () {
+    var n = 0;
+    //
+    this.inc = function () {
+        n++;
+        console.log(n);
+    };
+}
+var c1 = new a1();
+c1.inc();
+c1.inc();
+
+console.log('--------------------------------------------------')
+
+var name = "The Window";
+
+var object = {
+    name : "My Object",
+    getNameFunc : function() {
+        console.log(this)
+        var that = this;
+        (function () {
+            'use strict'
+            console.log(this)
+        })()
+        return function() {
+            'use strict'
+            console.log(this)
+            // return this.name;
+            // return that.name;
+        };
+    }
+};
+console.log(object.getNameFunc());
+</script>
+<!-- @@close -->

@@ -1,0 +1,64 @@
+<!-- @@master layout/default.html -->
+
+<!-- @@block content -->
+<main>
+    严格模式
+</main>
+<script type="text/javascript">
+// 将代码放入自执行函数块，方便脚本合并
+(function () {
+    // http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html
+    // 进入标志，老版本的浏览器会把它当作一行普通字符串，加以忽略
+    // 放在脚本文件的第一行，则整个脚本都将以严格模式运行，不在第一行，则普通模式
+    // IE9不支持严格模式
+    "use strict";
+
+    // 全局变量
+    /*var name = 'aaa';
+
+    function a () {
+        // "use strict";
+        // 私有变量
+        var n = 0;
+        // 全局变量
+        b = 5; // 1. 全局变量必须显式声明
+
+        add = function () {
+            n++;
+            console.log(n);
+        }
+
+        function inc() {
+            n++;
+            console.log(n);
+        }
+
+        return inc;
+    }
+
+    var c = a();
+    c();
+    c();
+    add();
+    console.log(b)
+    // 释放内存
+    c = null*/
+
+    console.log('--------------------------------------------------')
+
+    function a1 () {
+        var n = 0;
+        this.inc = function () {
+            n++;
+            console.log(n);
+        };
+    }
+    // a1();
+    var c1 = new a1();
+    c1.inc();
+    c1.inc();
+
+    console.log('--------------------------------------------------')
+})();
+</script>
+<!-- @@close

@@ -1,43 +1,50 @@
-<!-- @@master layout/default.html-->
+@@master layout/default.html-->
 
 <!-- @@block content -->
 <main>
-    test
+    继承
 </main>
 <script type="text/javascript">
+// 原型链继承、class继承
 ((window) => {
     function object(o){
-         function F(){}
-         F.prototype = o;
-         return new F();
+        function F(){}
+        F.prototype = o;
+        return new F();
     }
+
     function inheritPrototype(subType,superType){
-         //生成一个父类的副本,这个副本的prototype就是父类的prototype,constructor是父类的constructor
-         var obj = object(superType.prototype);
-         // ECMAScript5通过新增的Object.Create()方法规范化原型式继承.
-         // 这个方法接受两个参数,第一个是用作新对象的原型,另一个是新对象定义额外属性的对象
-         // var obj = Object.create(superType.prototype);
-         // 使这个父类副本的constructor指向子类, 这样子类的prototype设为父类副本时才能new子类对象
-         obj.constructor = subType; // 修复构造函数
-         subType.prototype = obj; //使子类的prototype指向父类副本实例
+        // 媒介对象
+        // var obj = object(superType.prototype);
+        // ECMAScript5通过新增的Object.Create()方法规范化原型式继承.
+        // 这个方法接受两个参数,第一个是用作新对象的原型,另一个是新对象定义额外属性的对象
+        var obj = Object.create(superType.prototype, {ss});
+        obj.constructor = subType; // 修复构造函数
+        subType.prototype = obj;
     }
+
     function SuperType(name){
-         this.name = name;
-         this.color = ['red','blue','green'];
+        this.name = name;
+        this.color = ['red','blue','green'];
     }
+
     SuperType.prototype.sayName = function(){
-         console.log(this.name);
+        console.log(this.name);
     }
+
     function SubType(name,age){
          SuperType.call(this,name);
          this.age = age;
     }
+
     inheritPrototype(SubType,SuperType);
+
     //子类扩展方法必须在inheritPrototype方法之后
     SubType.prototype.sayAge = function(){
          console.log(this.age);
     }
     var ins1 = new SubType('xxx',20);//new子类对象的时候其实调用的是子类prototype.constructor指向的构造方法.
+
     ins1.sayName();
     ins1.sayAge();
     console.log(ins1)
@@ -49,4 +56,4 @@
     console.log(SubType.prototype.isPrototypeOf(ins1));
 })(window)
 </script>
-<!-- @@close -->
+<!-- @@close
