@@ -11,9 +11,9 @@ gulp.task('image', getTask('image'));
 gulp.task('concatjs', getTask('concatjs'));
 gulp.task('empty', getTask('init'));
 
-gulp.task('default', gulp.series(getTask('init'), gulp.series('script', 'sass', 'less', 'image', 'html')));
+gulp.task('default', gulp.series('script', 'sass', 'less', 'image', 'html'));
 
-gulp.task('dev', gulp.series(getTask('init'), gulp.series('script', 'sass', 'less', 'image', 'html'), function (done) {
+gulp.task('dev', gulp.series('default'), function (done) {
     browserSync.init({
         server: 'dist'
     });
@@ -25,4 +25,4 @@ gulp.task('dev', gulp.series(getTask('init'), gulp.series('script', 'sass', 'les
     gulp.watch('src/css/**/*.less', getTask('less')).on('change', reload);
 
     done();
-}));
+});
