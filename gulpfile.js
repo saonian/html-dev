@@ -13,10 +13,13 @@ gulp.task('empty', getTask('init'));
 
 gulp.task('default', gulp.series('script', 'sass', 'less', 'image', 'html'));
 
-gulp.task('dev', gulp.series('default'), function (done) {
-    browserSync.init({
-        server: 'dist'
-    });
+gulp.task('dev', gulp.series('default'), async function (done) {
+    // 等待文件写入目录
+    await setTimeout(() => {
+        browserSync.init({
+            server: 'dist'
+        });
+    }, 4000)
 
     gulp.watch('src/**/*.html', getTask('html')).on('change', reload);
     gulp.watch('src/image/**/*', getTask('image')).on('change', reload);
