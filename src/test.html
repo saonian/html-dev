@@ -1,4 +1,4 @@
-@@master layout/default.html-->
+<!-- @@master layout/default.html -->
 
 <!-- @@block content -->
 <main>
@@ -18,8 +18,13 @@
         // var obj = object(superType.prototype);
         // ECMAScript5通过新增的Object.Create()方法规范化原型式继承.
         // 这个方法接受两个参数,第一个是用作新对象的原型,另一个是新对象定义额外属性的对象
-        var obj = Object.create(superType.prototype, {ss});
+        var obj = Object.create(superType.prototype);
         obj.constructor = subType; // 修复构造函数
+        // 效果一样
+        // var obj2 = Object.create(new superType);
+        // obj2.constructor = subType
+        console.log(obj)
+        // console.log(obj2)
         subType.prototype = obj;
     }
 

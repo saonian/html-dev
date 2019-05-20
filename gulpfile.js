@@ -11,9 +11,9 @@ gulp.task('image', getTask('image'));
 gulp.task('concatjs', getTask('concatjs'));
 gulp.task('empty', getTask('init'));
 
-gulp.task('default', gulp.series(getTask('init'), gulp.parallel('script', 'sass', 'less', 'html', 'image')));
+gulp.task('default', gulp.series(getTask('init'), gulp.series('script', 'sass', 'less', 'image', 'html')));
 
-gulp.task('dev', gulp.series(getTask('init'), gulp.parallel('script', 'sass', 'less', 'html', 'image'), function (done) {
+gulp.task('dev', gulp.series(getTask('init'), gulp.series('script', 'sass', 'less', 'image', 'html'), function (done) {
     browserSync.init({
         server: 'dist'
     });

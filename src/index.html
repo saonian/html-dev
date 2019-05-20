@@ -13,7 +13,16 @@ function SuperType (name) {
 SuperType.prototype.sayName = function(){
     console.log(this.name);
 }
-console.log(SuperType.prototype)
+console.log(SuperType.constructor === SuperType)
+console.log(SuperType.prototype.constructor === SuperType)
+console.log(SuperType.__proto__ === Function.prototype)
+console.log(SuperType.__proto__.__proto__)
+console.log(new SuperType)
+console.log((new SuperType).constructor)
+console.log((new SuperType).constructor === SuperType)
+console.log((new SuperType).__proto__ === SuperType.prototype)
+console.log((new SuperType).__proto__.__proto__ === SuperType.prototype.__proto__)
+console.log(SuperType.prototype.constructor.prototype === SuperType.prototype)
 // 不要使用字面量增加额外原型方法或属性
 // 字面量新创建了一个对象，这个对象构造函数默认是object，需要手动修复构造函数为本身才可以，不推荐
 // SuperType.prototype = {
@@ -39,12 +48,13 @@ SubType.prototype = new F();
 SubType.prototype.constructor = SubType
 
 var ins1 = new SubType('xxx', 20);
-
+console.log('--------------------------------------------------')
 console.log('ins1对象：', ins1)
 console.log('ins1的原型对象：', ins1.__proto__)
 console.log('SuperType的原型对象：', ins1.__proto__.__proto__)
 console.log('SuperType上层的原型对象：', ins1.__proto__.__proto__.__proto__)
 console.log('Object的原型对象：', Object.prototype)
+console.log('Object的__proto__：', Object.prototype.__proto__)
 
 console.log('--------------------------------------------------')
 // 每个构造函数都有一个原型对象prototype(构造函数也是对象，也有__proto__属性)
