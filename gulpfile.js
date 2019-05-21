@@ -11,7 +11,7 @@ gulp.task('image', getTask('image'));
 gulp.task('concatjs', getTask('concatjs'));
 gulp.task('empty', getTask('init'));
 
-gulp.task('default', gulp.series('script', 'sass', 'less', 'image', 'html'));
+gulp.task('default', gulp.series('empty', 'script', 'sass', 'less', 'image', 'html'));
 
 gulp.task('dev', gulp.series('default'), async function (done) {
     // 等待文件写入目录
