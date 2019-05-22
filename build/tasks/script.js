@@ -16,7 +16,9 @@ module.exports = function (gulp, plugins, options) {
         gulp.src(['src/js/**/*.js'])
             .pipe(plugins.plumber())
             .pipe(plugins.changed('dist/js'))
-            .pipe(plugins.eslint())
+            .pipe(plugins.eslint({
+                configFile: '.eslintrc.js'
+            }))
             .pipe(plugins.eslint.format())
             .pipe(plugins.eslint.failAfterError())
             .pipe(plugins.babel())

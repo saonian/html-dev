@@ -1,22 +1,8 @@
-// https://eslint.org/docs/user-guide/configuring
-
 module.exports = {
-  root: true,
-  parserOptions: {
-    parser: 'babel-eslint'
+  "extends": "standard",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jquery": true
   },
-  env: {
-    browser: true,
-  },
-  extends: [
-    // https://github.com/standard/eslint-config-standard
-    'standard'
-  ],
-  plugins: [
-
-  ],
-  // add your custom rules here
-  rules: {
-
-  }
-}
+};
