@@ -7,7 +7,7 @@ module.exports = function (gulp, plugins, options) {
     const reload = browserSync.reload;
 
     return function (done) {
-        gulp.src(['src/**/*.html'])
+        gulp.src(['src/**/*.html', '!src/layout/**/*'])
             .pipe(plugins.plumber("This file has an error: <%= file.relative %>!"))
             .pipe(plugins.changed('dist/'))
             .pipe(plugins.htmlExtend({
